@@ -5,7 +5,6 @@ public class LZ77 {
 	
 	LZ77(String d){
 		data = d;
-		System.out.println(data);
 	}
 
 	public void compress() {
