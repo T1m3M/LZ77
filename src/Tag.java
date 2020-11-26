@@ -13,4 +13,8 @@ public class Tag {
 	public void printTag() {
 		System.out.print("<" + p + ", " + l + ", '" + s + "'>");
 	}
+	
+	public int getLen() {
+		return l;
+	}
 }
