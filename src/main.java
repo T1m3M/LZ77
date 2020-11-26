@@ -24,6 +24,7 @@ public class main {
 				data = _sc.nextLine();
 				
 				alg = new LZ77(data);
+				alg.compress();
 			}
 			
 			else if (input == 2) {
@@ -32,6 +33,7 @@ public class main {
 				data = _sc.nextLine();
 				
 				alg = new LZ77(data);
+				alg.decompress();
 			}
 			
 			else if(input == 3) break;
