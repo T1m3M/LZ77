@@ -32,19 +32,19 @@ public class LZ77 {
 			// updating the search buffer and the look ahead window scope
 			searchBuffEnd = lookAheadWinStart; // always attached
 			
-			if(searchBuffEnd < 7) // search buffer start calculation
+			if(searchBuffEnd < SEARCH_BUFF_SIZE) // search buffer start calculation
 				searchBuffStart = 0;
 			else
 				searchBuffStart = searchBuffEnd - SEARCH_BUFF_SIZE;
 			
-			if(lookAheadWinStart + 7 >= data.length()) // search buffer end boundary
+			if(lookAheadWinStart + LOOK_AHEAD_WIN_SIZE >= data.length()) // search buffer end boundary
 				lookAheadWinEnd = data.length();
 			else
 				lookAheadWinEnd = lookAheadWinStart + LOOK_AHEAD_WIN_SIZE;
 			
 			System.out.println(data.substring(lookAheadWinStart, lookAheadWinEnd));
 			
-			lookAheadWinStart++;
+			lookAheadWinStart+=2;
 		}
 	}
 
