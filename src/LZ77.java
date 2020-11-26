@@ -9,7 +9,7 @@ public class LZ77 {
 	private static int lookAheadWinStart = 0, lookAheadWinEnd = 0;
 	
 	// constants
-	private static int SEARCH_BUFF_SIZE = 7, LOOK_AHEAD_WIN_SIZE = 7;
+	private static int SEARCH_BUFF_SIZE = 7, LOOK_AHEAD_WIN_SIZE = 15;
 	
 	LZ77(String d){
 		data = d;
