@@ -5,6 +5,10 @@ public class LZ77 {
 	private static String data = "";
 	private static Tag tag;
 	private static ArrayList<Tag> allTags = new ArrayList<Tag>();
+	private static int lookAheadWinStart = 0;
+	
+	// constants
+	private static int SEARCH_BUFF_SIZE = 7, LOOK_AHEAD_WIN_SIZE = 7;
 	
 	LZ77(String d){
 		data = d;
@@ -20,19 +24,14 @@ public class LZ77 {
 	}
 
 	public void compress() {
-		tag = new Tag(1, 2, 'A');
-		allTags.add(tag);
 		
-		tag = new Tag(2, 4, 'B');
-		allTags.add(tag);
-		
-		tag = new Tag(8, 10, 'X');
-		allTags.add(tag);
-		
-		printAllTags();
+		// while the algorithm still working on data compression
+		while(lookAheadWinStart < data.length()) {
+			
+		}
 	}
 
 	public void decompress() {
-		System.out.println("Original data: " + data + "!");
+		
 	}
 }
