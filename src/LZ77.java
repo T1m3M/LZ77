@@ -23,6 +23,33 @@ public class LZ77 {
 		
 		System.out.print("\n");
 	}
+	
+	private Tag searching(String searchBuff, String lookAheadWin) {
+		int position = 0, length = 0;
+		char symbol;
+		
+		if(lookAheadWin.length() > 1) {
+			
+			if(searchBuff.contains(lookAheadWin)){
+				// calculate the offset to the matched string
+				position = lookAheadWinStart - searchBuff.indexOf(lookAheadWin);
+				
+				// get the length it copies
+				length = lookAheadWin.length();
+			}
+			
+			else {
+				// search for smaller match
+				searching(searchBuff, lookAheadWin.substring(0, lookAheadWin.length() - 1));
+			}
+		}
+		
+		// get the next symbol letter's character value (the last char in the matched)
+		symbol = lookAheadWin.charAt(length);
+		
+		
+		return new Tag(position, length, symbol);
+	}
 
 	public void compress() {
 		
@@ -42,9 +69,15 @@ public class LZ77 {
 			else
 				lookAheadWinEnd = lookAheadWinStart + LOOK_AHEAD_WIN_SIZE;
 			
-			System.out.println(data.substring(lookAheadWinStart, lookAheadWinEnd));
 			
-			lookAheadWinStart+=2;
+			// searching in search buffer for the largest possible match
+			tag = searching(data.substring(searchBuffStart, searchBuffEnd),
+							data.substring(lookAheadWinStart, lookAheadWinEnd));
+			
+			tag.printTag();
+			
+			break;
+			//lookAheadWinStart+=2; // will be dynamic
 		}
 	}
 
