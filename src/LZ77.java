@@ -84,6 +84,7 @@ public class LZ77 {
 			lookAheadWinStart += tag.getLen() + 1;
 		}
 		
+		System.out.print("Compressed Data: ");
 		printAllTags();
 	}
 
