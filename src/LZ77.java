@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class LZ77 {
 	
 	private static String data = "";
+	private int position = 0, length = 0;
 	private static Tag tag;
 	private static ArrayList<Tag> allTags = new ArrayList<Tag>();
 	private static int searchBuffStart = 0, searchBuffEnd = 0;
@@ -25,17 +26,18 @@ public class LZ77 {
 	}
 	
 	private Tag searching(String searchBuff, String lookAheadWin) {
-		int position = 0, length = 0;
 		char symbol;
 		
-		if(lookAheadWin.length() > 1) {
+		if(lookAheadWin.length() >= 1) {
 			
 			if(searchBuff.contains(lookAheadWin)){
+				
 				// calculate the offset to the matched string
-				position = lookAheadWinStart - searchBuff.indexOf(lookAheadWin);
+				position = lookAheadWinStart - searchBuff.lastIndexOf(lookAheadWin) - searchBuffStart;
 				
 				// get the length it copies
 				length = lookAheadWin.length();
+				
 			}
 			
 			else {
@@ -45,9 +47,11 @@ public class LZ77 {
 		}
 		
 		// get the next symbol letter's character value (the last char in the matched)
-		symbol = lookAheadWin.charAt(length);
-		
-		
+		if(lookAheadWinStart + length < lookAheadWinEnd)
+			symbol = data.charAt(lookAheadWinStart + length);
+		else
+			symbol = ' '; // there's no next symbol
+
 		return new Tag(position, length, symbol);
 	}
 
@@ -74,11 +78,13 @@ public class LZ77 {
 			tag = searching(data.substring(searchBuffStart, searchBuffEnd),
 							data.substring(lookAheadWinStart, lookAheadWinEnd));
 			
-			tag.printTag();
+			allTags.add(tag); // append to allTags list
 			
-			break;
-			//lookAheadWinStart+=2; // will be dynamic
+			// move look ahead to the right to compress next data
+			lookAheadWinStart += tag.getLen() + 1;
 		}
+		
+		printAllTags();
 	}
 
 	public void decompress() {
