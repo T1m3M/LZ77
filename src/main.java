@@ -11,34 +11,28 @@ public class main {
 		
 		System.out.println("Welcome to LZ77 World!");
 		
-		while(true) {
-			System.out.println("\nWhat to you want to do?\n1- Compress\n2- Decompress\n3- Exit");
-			System.out.print("> ");
-			
+		System.out.println("\nWhat to you want to do?\n1- Compress\n2- Decompress");
+		System.out.print("> ");
+		
+		_sc = new Scanner(System.in);
+		input = _sc.nextInt();
+		
+		if (input == 1) {
+			System.out.print("Original Data: ");
 			_sc = new Scanner(System.in);
-			input = _sc.nextInt();
+			data = _sc.nextLine();
 			
-			if (input == 1) {
-				System.out.print("Original Data: ");
-				_sc = new Scanner(System.in);
-				data = _sc.nextLine();
-				
-				alg = new LZ77(data);
-				alg.compress();
-			}
-			
-			else if (input == 2) {
-				System.out.print("Compressed Data: ");
-				_sc = new Scanner(System.in);
-				data = _sc.nextLine();
-				
-				alg = new LZ77(data);
-				alg.decompress();
-			}
-			
-			else if(input == 3) break;
+			alg = new LZ77(data);
+			alg.compress();
 		}
 		
+		else if (input == 2) {
+			System.out.print("Compressed Data: ");
+			_sc = new Scanner(System.in);
+			data = _sc.nextLine();
+			
+			alg = new LZ77(data);
+			alg.decompress();
+		}
 	}
-
 }
