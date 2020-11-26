@@ -18,7 +18,7 @@ public class main {
 		input = _sc.nextInt();
 		
 		if (input == 1) {
-			System.out.print("Original Data: ");
+			System.out.print("Original Data  : ");
 			_sc = new Scanner(System.in);
 			data = _sc.nextLine();
 			
