@@ -1,8 +1,11 @@
 
 public class LZ77 {
-
-	public static void main(String[] args) {
-
+	
+	private static String data = "";
+	
+	LZ77(String d){
+		data = d;
+		System.out.println(data);
 	}
 
 }

@@ -7,6 +7,7 @@ public class main {
 		int input;
 		Scanner _sc;
 		String data;
+		LZ77 alg;
 		
 		System.out.println("Welcome to LZ77 World!");
 		
@@ -22,7 +23,7 @@ public class main {
 				_sc = new Scanner(System.in);
 				data = _sc.nextLine();
 				
-				System.out.println(data);
+				alg = new LZ77(data);
 			}
 			
 			else if (input == 2) {
@@ -30,7 +31,7 @@ public class main {
 				_sc = new Scanner(System.in);
 				data = _sc.nextLine();
 				
-				System.out.println(data);
+				alg = new LZ77(data);
 			}
 			
 			else if(input == 3) break;
