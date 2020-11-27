@@ -107,6 +107,7 @@ public class LZ77 {
 	}
 
 	public void decompress() {
+		
 		String original = "";
 		int offset, copy;
 		
@@ -117,11 +118,12 @@ public class LZ77 {
 		for(int i = 0; i < allTags.size(); i++) {
 			tag = allTags.get(i);
 			
+			// restoring the data from the tag and concatenating it
 			offset = original.length() - tag.getPos();
 			copy = offset + tag.getLen();
 			original += original.substring(offset, copy) + tag.getSym();
 		}
 		
-		System.out.print(original);
+		System.out.print("Original Data  : " + original);
 	}
 }
