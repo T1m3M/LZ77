@@ -42,6 +42,14 @@ public class LZ77 {
 				
 			}
 			
+			// if only one letter is left and not in the dictionary
+			else if (lookAheadWin.length() == 1) {
+				// reset the values of the previous operation
+				// because that's the first occurreance for the letter
+				position = 0;
+				length = 0;
+			}
+			
 			else {
 				// search for smaller match
 				searching(searchBuff, lookAheadWin.substring(0, lookAheadWin.length() - 1));
