@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LZ77 {
 	
 	private static String data = "";
 	private int position = 0, length = 0;
+	private char symbol;
 	private static Tag tag;
 	private static ArrayList<Tag> allTags = new ArrayList<Tag>();
 	private static int searchBuffStart = 0, searchBuffEnd = 0;
@@ -26,7 +29,6 @@ public class LZ77 {
 	}
 	
 	private Tag searching(String searchBuff, String lookAheadWin) {
-		char symbol;
 		
 		if(lookAheadWin.length() >= 1) {
 			
@@ -87,8 +89,27 @@ public class LZ77 {
 		System.out.print("Compressed Data: ");
 		printAllTags();
 	}
+	
+	private void parsing(String inTags) {
+
+	     String insideTag = inTags.split("[\\\\<\\\\>]")[1];
+	     
+	     position = Integer.parseInt(insideTag.substring(0, insideTag.indexOf(",")));
+	     length = Integer.parseInt(insideTag.substring(insideTag.indexOf(",") + 2, insideTag.lastIndexOf(",")));
+	     symbol = insideTag.charAt(insideTag.indexOf("'") + 1);
+	     
+	     tag = new Tag(position, length, symbol);
+	     allTags.add(tag);
+	     
+	     // if the previous wan't the last tag
+	     if(!inTags.equals("<" + insideTag + ">"))
+	    	 parsing(inTags.substring(insideTag.length() + 3)); // 3 = ' ' + '<' + '>'
+	}
 
 	public void decompress() {
+		
+		// loading all data in Tags objects
+		parsing(data);
 		
 	}
 }
