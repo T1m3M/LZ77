@@ -60,7 +60,7 @@ public class LZ77 {
 		if(lookAheadWinStart + length < lookAheadWinEnd)
 			symbol = data.charAt(lookAheadWinStart + length);
 		else
-			symbol = ' '; // there's no next symbol
+			symbol = 0; // there's no next symbol
 
 		return new Tag(position, length, symbol);
 	}
@@ -100,11 +100,17 @@ public class LZ77 {
 	
 	private void parsing(String inTags) {
 
+		
 	     String insideTag = inTags.split("[\\\\<\\\\>]")[1];
 	     
 	     position = Integer.parseInt(insideTag.substring(0, insideTag.indexOf(",")));
 	     length = Integer.parseInt(insideTag.substring(insideTag.indexOf(",") + 2, insideTag.lastIndexOf(",")));
-	     symbol = insideTag.charAt(insideTag.indexOf("'") + 1);
+
+	     // check if next symbol is not null ' '
+	     if (insideTag.charAt(insideTag.indexOf("'") + 1) != '\'' )
+	    	 symbol = insideTag.charAt(insideTag.indexOf("'") + 1);
+	     else
+	    	 symbol = 0;
 	     
 	     tag = new Tag(position, length, symbol);
 	     allTags.add(tag);
