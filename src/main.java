@@ -22,6 +22,7 @@ public class main {
 			_sc = new Scanner(System.in);
 			data = _sc.nextLine();
 			
+			// Example: ABAABABAABBBBBBBBBBBBA
 			alg = new LZ77(data);
 			alg.compress();
 		}
@@ -31,6 +32,7 @@ public class main {
 			_sc = new Scanner(System.in);
 			data = _sc.nextLine();
 			
+			// Example: <0, 0, 'A'> <0, 0, 'B'> <2, 1, 'A'> <3, 2, 'B'> <5, 3, 'B'> <2, 2, 'B'> <5, 5, 'B'> <1, 1, 'A'>
 			alg = new LZ77(data);
 			alg.decompress();
 		}
