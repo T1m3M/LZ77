@@ -14,7 +14,15 @@ public class Tag {
 		System.out.print("<" + p + ", " + l + ", '" + s + "'>");
 	}
 	
+	public int getPos() {
+		return p;
+	}
+	
 	public int getLen() {
 		return l;
+	}
+	
+	public char getSym() {
+		return s;
 	}
 }
