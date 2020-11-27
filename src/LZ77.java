@@ -107,9 +107,21 @@ public class LZ77 {
 	}
 
 	public void decompress() {
+		String original = "";
+		int offset, copy;
 		
 		// loading all data in Tags objects
 		parsing(data);
 		
+		// get each tag to decode
+		for(int i = 0; i < allTags.size(); i++) {
+			tag = allTags.get(i);
+			
+			offset = original.length() - tag.getPos();
+			copy = offset + tag.getLen();
+			original += original.substring(offset, copy) + tag.getSym();
+		}
+		
+		System.out.print(original);
 	}
 }
